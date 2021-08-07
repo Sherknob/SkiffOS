@@ -77,6 +77,9 @@ ADB stands for Android Debug Bridge, and it is a part of the Android Software De
 $ sudo emerge --ask --autounmask=y --autounmask-write dev-util/android-sdk-update-manager
 $ sudo emerge --ask dev-util/android-sdk-update-manager
 ```
+
+Emerge may ask you to install "sys-libs/ncurses-compat", it may even tell you, that no ebuilds could be found to satisfy this dependency. You can run: `sudo emerge --ask sys-libs/ncurses-compat` to merge it into your system.
+
 Emerge may ask you to install "dev-java/swt". You can do that by
 ```
 $ sudo emerge --ask --autounmask=y --autounmask-write dev-java/swt
@@ -91,6 +94,49 @@ ERROR: dev-java/swt-4.10-r2::gentoo failed (unpack phase):
 ```
 
 After that, redo the step to install "dev-util/android-sdk-update-manager"
+
+
+
+
+### 1.2) Install adb for gentoo
+
+ADB stands for Android Debug Bridge, and it is a part of the Android Software Development Kit (SDK). It has to be build from source, because the version that is provided in the gentoo repo is amd64 only. You can clone this repo from github:
+```
+$ git clone https://github.com/qhuyduong/arm_adb.git
+```
+
+Next, you'll have to merge automake into your system, this can be done with emerge:
+```
+$ sudo emerge --ask automake
+```
+
+After that, you'll have to merge libtool into your system. This is installed with:
+```
+$ sudo emerge --ask libtool
+```
+#### Installing slightly older version of OpenSSL
+
+If you then try to configure and make abd now, you'll get into some trouble with the newest OpenSSL installation on your device. The adb that we want to install is not compatible with the newest OpenSSL version, so we will get ourselfs a slightly older version of OpenSSL. This incompatability is due to some changes in OpenSSL's visibility of struct members. You can clone it from `$ git clone https://github.com/qhuyduong/openssl-1.0.2l.git`.
+
+then:
+```
+$ cd openssl-1.0.2l/
+$ ./Configure --prefix=/tmp/openssl os/compiler:gcc
+$ make && make install
+```
+# TODO, see if version can or needs to be removed afterwords
+
+### Troubleshooting for adb
+
+If you encounter "WARNING: 'aclocal-1.xx' is missing on your system", just run `$ autoreconf -i --force` before configuring.
+
+
+Now your system should be ready to build adb from source. 
+
+
+ 
+
+
 
 
 
