@@ -60,17 +60,17 @@ system can be updated without touching the "persist" partition by running
 
 `ssh core@192.168.xxx.xxx`
 
-###step 1) Unlock ADB access
+### step 1) Unlock ADB access
 
 It's possible to access the Linux side of the modem via adb, or reboot the modem to fastboot mode and boot your own kernel, The modem is rooted by default, and you can install and run your own software inside the modem. It's possible to communicate between A64 and the modem's ARM CPU via USB serial port (ttyGS0 on modem side and ttyUSB1 on A64).
 
-####1.1) Get adb key
+#### 1.1) Get adb key
 Add the file linked below to your home dir (It doesn't really matter what dir). The original file is located here: https://xnux.eu/devices/feature/qadbkey-unlock.c .
 
 Compile with `$ gcc -o qadbkey-unlock qadbkey-unlock.c -lcrypt`
 Execute with `$ ./qadbkey-unlock AT+QADBKEY?`
 
-####1.2) Install adb for gentoo
+#### 1.2) Install adb for gentoo
 
 ADB stands for Android Debug Bridge, and it is a part of the Android Software Development Kit (SDK). It can be installed with
 ```
