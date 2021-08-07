@@ -52,3 +52,73 @@ script, initramfs, and modules image to the boot and rootfs partitions. The root
 system can be updated without touching the "persist" partition by running
 "install" again whenever necessary.
 
+
+
+
+
+# Updating ModemFirmware
+
+`ssh core@192.168.xxx.xxx`
+
+###step 1) Unlock ADB access
+
+It's possible to access the Linux side of the modem via adb, or reboot the modem to fastboot mode and boot your own kernel, The modem is rooted by default, and you can install and run your own software inside the modem. It's possible to communicate between A64 and the modem's ARM CPU via USB serial port (ttyGS0 on modem side and ttyUSB1 on A64).
+
+####1.1) Get adb key
+Add the file linked below to your home dir (It doesn't really matter what dir). The original file is located here: https://xnux.eu/devices/feature/qadbkey-unlock.c .
+
+Compile with `$ gcc -o qadbkey-unlock qadbkey-unlock.c -lcrypt`
+Execute with `$ ./qadbkey-unlock AT+QADBKEY?`
+
+####1.2) Install adb for gentoo
+
+ADB stands for Android Debug Bridge, and it is a part of the Android Software Development Kit (SDK). It can be installed with
+```
+$ sudo emerge --ask --autounmask=y --autounmask-write dev-util/android-sdk-update-manager
+$ sudo emerge --ask dev-util/android-sdk-update-manager
+```
+Emerge may ask you to install "dev-java/swt". You can do that by
+```
+$ sudo emerge --ask --autounmask=y --autounmask-write dev-java/swt
+$ sudo emerge --ask dev-java/swt
+```
+
+While figuring this out, I ran into a problem with installing "dev-java/swt". It stated:
+```
+ERROR: dev-java/swt-4.10-r2::gentoo failed (unpack phase):
+ *   Unable to extract distfile
+
+```
+
+After that, redo the step to install "dev-util/android-sdk-update-manager"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#CIVEMESOMESPACEATOM
