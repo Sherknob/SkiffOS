@@ -98,9 +98,12 @@ After that, redo the step to install "dev-util/android-sdk-update-manager"
 
 
 
+[v3] build: include sys/sysmacros.h for major() and minor ...[v3] build: include sys/sysmacros.h for major() and minor ...[v3] build: include sys/sysmacros.h for major() and minor ...[v3] build: include sys/sysmacros.h for major() and minor ...[v3] build: include sys/sysmacros.h for major() and minor
 
+make fork and add the change
+or just make a pull req in openssl repo
 
-
+# successfully build adb for pinephone!
 
 
 
